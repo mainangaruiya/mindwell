@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resources | MindWell</title>
+<!-- Google Fonts: Quicksand for a soft, friendly feel -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#c5eae9",
+                    "on-secondary-container": "#516774",
+                    "surface-container-highest": "#e4e2dd",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed": "#061e29",
+                    "on-primary-fixed-variant": "#2a4c4d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed-dim": "#a9cdcd",
+                    "surface-dim": "#dbdad5",
+                    "on-tertiary-fixed": "#390c04",
+                    "on-primary-container": "#f3fffe",
+                    "tertiary-container": "#a76253",
+                    "on-surface-variant": "#414848",
+                    "surface-bright": "#fbf9f4",
+                    "secondary-fixed-dim": "#b3cad8",
+                    "surface-container-low": "#f5f3ee",
+                    "on-background": "#1b1c19",
+                    "surface-container": "#f0eee9",
+                    "inverse-on-surface": "#f2f1ec",
+                    "secondary-container": "#cee6f5",
+                    "surface-variant": "#e4e2dd",
+                    "background": "#fbf9f4",
+                    "on-tertiary-fixed-variant": "#703629",
+                    "outline-variant": "#c1c8c7",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#fffbff",
+                    "tertiary-fixed": "#ffdad3",
+                    "inverse-primary": "#a9cdcd",
+                    "surface-container-high": "#eae8e3",
+                    "tertiary": "#8a4a3c",
+                    "on-surface": "#1b1c19",
+                    "on-secondary": "#ffffff",
+                    "surface": "#fbf9f4",
+                    "on-primary-fixed": "#002020",
+                    "primary": "#406262",
+                    "tertiary-fixed-dim": "#ffb4a4",
+                    "primary-container": "#587b7b",
+                    "error": "#ba1a1a",
+                    "secondary": "#4b616e",
+                    "inverse-surface": "#30312e",
+                    "surface-tint": "#426464",
+                    "outline": "#717878",
+                    "secondary-fixed": "#cee6f5",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#344a56"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-margin-mobile": "20px",
+                    "stack-gap-lg": "48px",
+                    "stack-gap-md": "24px",
+                    "unit": "8px",
+                    "gutter": "16px",
+                    "container-margin-desktop": "40px",
+                    "stack-gap-sm": "12px"
+            },
+            "fontFamily": {
+                    "body-md": ["Quicksand"],
+                    "crisis-action": ["Quicksand"],
+                    "headline-md": ["Quicksand"],
+                    "label-caps": ["Quicksand"],
+                    "headline-lg": ["Quicksand"],
+                    "body-lg": ["Quicksand"],
+                    "headline-lg-mobile": ["Quicksand"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "crisis-action": ["16px", {"lineHeight": "20px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Quicksand', sans-serif; }
+        .soft-elevation { box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08); }
+        .crisis-pulse { animation: pulse-shadow 2s infinite; }
+        @keyframes pulse-shadow {
+            0% { box-shadow: 0 0 0 0 rgba(186, 26, 26, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(186, 26, 26, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(186, 26, 26, 0); }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-margin-mobile md:px-container-margin-desktop h-16 bg-surface/80 glass-nav shadow-sm">
+<div class="flex items-center gap-stack-sm">
+<span class="font-headline-md text-headline-md font-bold text-primary">MindWell</span>
+</div>
+<nav class="hidden md:flex items-center gap-stack-md">
+<a class="text-secondary hover:text-primary transition-colors font-body-md" href="home.html">Home</a>
+<a class="text-primary font-bold border-b-2 border-primary font-body-md" href="Resource_hub.html">Resources</a>
+<a class="text-secondary hover:text-primary transition-colors font-body-md" href="mood_progress.html">Progress</a>
+</nav>
+<div class="flex items-center gap-4">
+<a href="#crisis-support" class="bg-error text-on-error px-4 py-2 rounded-full font-crisis-action text-crisis-action crisis-pulse transition-transform hover:scale-105 active:scale-95">
+                Crisis Support
+            </a>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A portrait of a serene young student with a friendly expression, soft lighting, pastel background, highly detailed digital painting style consistent with a modern mental health application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb3U1EEqSdnm4-WTKAON2NsSGxd4t5LEaEKiBoJWffNloe2E396J8io0AUE4jHmBRC5ELlnXU_jacWfBxv44WYQ83uArql2dLs-g-ZXzbuHdw09b8zFA6BC5A9TM4u4sdlLWSiHM7tqYdAT0_7q1wYoII7jsV8ErnSL7cgtAonWWVq2miXitH7zRzus39uIqNrBYEq1fdgM_uW7T7TAG_bZEDR2vQ0mhMElXrHt2kHtom7ZadIA3cqCAUMTYdSM4nYdETdQornJPQ"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-container-margin-mobile md:px-container-margin-desktop max-w-[1200px] mx-auto">
+<!-- Hero Section -->
+<section class="mb-stack-gap-lg">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">Find your calm</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">A curated collection of tools and resources designed to help you navigate your emotional landscape with ease.</p>
+</section>
+<!-- Resource Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Category: Breathing & Grounding -->
+<div class="md:col-span-2 bg-surface-container-low p-stack-gap-md rounded-xl soft-elevation">
+<div class="flex items-center gap-3 mb-stack-gap-sm">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="air">air</span>
+<h2 class="font-headline-md text-headline-md">Breathing &amp; Grounding</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-stack-sm">
+<a href="Chat.html" class="bg-surface border-2 border-transparent hover:border-primary-fixed-dim transition-all p-4 rounded-xl cursor-pointer group block">
+<h3 class="font-headline-md text-headline-md text-primary mb-2">4-7-8 Technique</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">A rhythmic breathing pattern to calm the nervous system.</p>
+<span class="text-primary font-bold inline-flex items-center gap-1 group-hover:gap-2 transition-all">Start Exercise <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span></span>
+</a>
+<a href="Chat.html" class="bg-surface border-2 border-transparent hover:border-primary-fixed-dim transition-all p-4 rounded-xl cursor-pointer group block">
+<h3 class="font-headline-md text-headline-md text-primary mb-2">5-4-3-2-1 Grounding</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Connect with your senses when feeling overwhelmed.</p>
+<span class="text-primary font-bold inline-flex items-center gap-1 group-hover:gap-2 transition-all">Begin Guide <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span></span>
+</a>
+</div>
+</div>
+<!-- Category: Audio/Meditation -->
+<div class="bg-secondary-container/30 p-stack-gap-md rounded-xl soft-elevation flex flex-col">
+<div class="flex items-center gap-3 mb-stack-gap-sm">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="headset">headset</span>
+<h2 class="font-headline-md text-headline-md">Audio &amp; Tracks</h2>
+</div>
+<div class="space-y-stack-sm flex-grow">
+<div class="flex items-center justify-between p-3 bg-surface rounded-lg hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="bedtime" style="font-variation-settings: 'FILL' 1;">bedtime</span>
+<span class="font-body-md text-body-md">Sleep Drift</span>
+</div>
+<span class="material-symbols-outlined" data-icon="play_circle">play_circle</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface rounded-lg hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="bolt">bolt</span>
+<span class="font-body-md text-body-md">Deep Focus</span>
+</div>
+<span class="material-symbols-outlined" data-icon="play_circle">play_circle</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface rounded-lg hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" data-icon="forest">forest</span>
+<span class="font-body-md text-body-md">Nature Sounds</span>
+</div>
+<span class="material-symbols-outlined" data-icon="play_circle">play_circle</span>
+</div>
+</div>
+</div>
+<!-- Category: Journaling -->
+<div class="md:col-span-3 bg-surface-container p-stack-gap-md rounded-xl soft-elevation flex flex-col md:flex-row gap-stack-md items-center">
+<div class="flex-1">
+<span class="font-label-caps text-label-caps text-secondary mb-2 block">DAILY PROMPT</span>
+<h2 class="font-headline-lg-mobile md:font-headline-md text-headline-lg-mobile md:text-headline-md text-on-surface mb-4">"What made you smile today?"</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Writing down small wins can shift your perspective. Take a moment to reflect.</p>
+<a href="Chat.html" class="inline-block bg-primary text-on-primary px-8 py-3 rounded-full font-body-md hover:opacity-90 transition-opacity">Write Journal Entry</a>
+</div>
+<div class="w-full md:w-1/3 h-48 rounded-xl overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Close up of a beautiful linen journal on a wooden desk with a soft morning light filtering through a window, dried lavender sprigs, calming sage green and warm wood tones, high quality photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVVZJSGMgSXlikx_wvMVSIOmnOmhYJyBa-CfpOwSrH92_LPt4dO6MyNC_Pdf0e_wNG6E-O_hIruq_OHxv54JngNLTY5y5kyZxyra_SA7eRTo4odlVvW2bDsD5sbznquFZZfJkBgSDdTIr4-DKs91GCBe6bMamBLffIv3T-vGHlL2CNxiWvjoganA24MNkzDjaO2IGtAycolBHkj7lQE6g9r8O8FjsM8WLtfpIR-2eMguUe7Mf5fz0c2_50-D_XACqmAXPVolUn11s"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+</div>
+</div>
+</div>
+<!-- Crisis Support Section -->
+<section class="mt-stack-gap-lg" id="crisis-support">
+<div class="bg-error-container/20 border-2 border-error-container p-stack-gap-md rounded-xl">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-stack-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-error flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined" data-icon="emergency_home">emergency_home</span>
+                            Immediate Support
+                        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">If you or someone you know is in crisis, please reach out. You are not alone.</p>
+</div>
+<div class="flex flex-wrap gap-4">
+<a class="flex items-center gap-2 bg-surface text-on-surface px-4 py-3 rounded-xl border border-outline-variant hover:bg-surface-container-high transition-colors" href="tel:988">
+<span class="material-symbols-outlined text-error" data-icon="phone_forwarded" style="font-variation-settings: 'FILL' 1;">phone_forwarded</span>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps">National Helpline</span>
+<span class="font-headline-md text-headline-md leading-none">988</span>
+</div>
+</a>
+<a class="flex items-center gap-2 bg-surface text-on-surface px-4 py-3 rounded-xl border border-outline-variant hover:bg-surface-container-high transition-colors" href="sms:741741">
+<span class="material-symbols-outlined text-secondary" data-icon="chat_bubble" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps">Crisis Text Line</span>
+<span class="font-headline-md text-headline-md leading-none">741741</span>
+</div>
+</a>
+</div>
+</div>
+<div class="mt-stack-gap-sm pt-stack-gap-sm border-t border-error-container/40">
+<a href="tel:911" class="w-full md:w-auto bg-error text-on-error px-8 py-4 rounded-full font-crisis-action text-crisis-action flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="local_police">local_police</span>
+                        Call Campus Security
+                    </a>
+</div>
+</div>
+</section>
+</main>
+<!-- Side Navigation (Mobile Overlay / Desktop Hidden for this view as per hierarchy) -->
+<!-- Implementing as BottomNavBar for Mobile context as per design rules -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/90 glass-nav h-16 flex justify-around items-center z-50">
+<a class="flex flex-col items-center text-on-surface-variant" href="home.html">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center text-primary" href="Resource_hub.html">
+<span class="material-symbols-outlined" data-icon="category" style="font-variation-settings: 'FILL' 1;">category</span>
+<span class="text-[10px] font-bold">Resources</span>
+</a>
+<a class="flex flex-col items-center text-on-surface-variant" href="mood_progress.html">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span class="text-[10px] font-bold">Progress</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.cursor-pointer').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('shadow-lg');
+                card.style.transform = 'translateY(-2px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('shadow-lg');
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Breathing exercise placeholder interaction
+        function startBreathing() {
+            // This would trigger an overlay or animation in a real app
+            console.log("Breathing exercise initiated");
+        }
+    </script>
+</body></html>

@@ -1,0 +1,224 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-image: url('image/background.png'); /* Dark background matching your screenshot */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Card Container */
+.card {
+    background-color: transparent; /* Off-white canvas color */
+    width: 100%;
+    max-width: 800px;
+    border-radius: 4px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header Navigation */
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 1.1rem;
+}
+
+.secure-session {
+    font-size: 0.75rem;
+    color: #718096;
+    letter-spacing: 0.5px;
+}
+
+/* Main Content */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #2d3748;
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.description {
+     color: #000000;
+    margin-bottom: 12px;
+    font-weight: 500
+}
+
+/* Buttons Section */
+.button-group {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.btn {
+    flex: 1;
+    padding: 15px 25px;
+    border-radius: 50px; /* Capsule shape */
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.btn-subtitle {
+    font-size: 0.75rem;
+}
+
+/* Student Button (Solid Blue) */
+.btn-student {
+    background-color: #4b779a;
+    color: #ffffff;
+}
+
+.btn-student .btn-subtitle {
+    color: #d1e2f0;
+}
+
+.btn-student:hover {
+    background-color: #3d6280;
+}
+
+/* School Button (Outlined) */
+.btn-school {
+    background-color: transparent;
+    border: 1px solid #a0aec0;
+    color: #4a5568;
+}
+
+.btn-school .btn-subtitle {
+    color: #a0aec0;
+}
+
+.btn-school:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: #4a5568;
+}
+
+/* Privacy Section */
+.privacy-box {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    color: #718096;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.privacy-icon {
+    font-size: 1.1rem;
+    margin-top: -2px;
+}
+
+.privacy-box strong {
+    color: #4a5568;
+    display: block;
+    margin-bottom: 4px;
+    font-display: #ffffff;
+}
+.id{
+    color: #718096;
+}
+
+/* Crisis Support Button (Sticky Bottom Right) */
+.crisis-btn {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    background-color: #a37081;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.2s;
+}
+
+.crisis-btn:hover {
+    background-color: #8c5d6e;
+}
+
+/* Responsive Layout for Mobile Screens */
+@media (max-width: 600px) {
+    .button-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .card {
+        padding: 25px 20px 80px 20px;
+    }
+}
+p {
+            color: #2d3748;
+    margin-bottom: 12px;
+    font-weight: 500;
+        }
+ .privacy-text:hover {
+            color: #000000;
+            transform: scale(1.05);
+        }   
+        .privacy-text{
+             color: #2d3748;
+    margin-bottom: 12px;
+    font-weight: 500;
+        }
+        p{
+             color: #2d3748;
+    margin-bottom: 12px;
+    font-weight: 500;
+        }

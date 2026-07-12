@@ -1,0 +1,341 @@
+:root {
+    --bg-color: #f6f8f6;
+    --card-bg: #ffffff;
+    --text-main: #2b332e;
+    --text-muted: #6e7871;
+    --accent-dark: #37494d;
+    --accent-light: #d1e4e6;
+    --btn-crisis-bg: #402825;
+    --radius-lg: 18px;
+    --radius-md: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('image/background.png');
+    background-size: cover;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.dashboard-container {
+    width: 100%;
+    max-width: 1000px;
+    background: transparent;
+    padding: 2rem;
+    margin: 2rem 1rem;
+    border-radius: 24px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid #f0f2f0;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-right: 1.5rem;
+    transition: color 0.2s;
+}
+
+.nav-links a.active, .nav-links a:hover {
+    color: var(--text-main);
+}
+
+.btn-crisis {
+    background-color: var(--btn-crisis-bg);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.profile-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #dcdfdc;
+}
+
+.main-content {
+    padding-top: 2rem;
+}
+
+.greeting-section h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 1.8rem;
+}
+
+.streak-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: #f1f5f2;
+    padding: 0.75rem 1.2rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 2.5rem;
+}
+
+.streak-icon {
+    font-size: 1.4rem;
+}
+
+.streak-text strong {
+    font-size: 0.95rem;
+    display: block;
+}
+
+.streak-text p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.mood-section h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+}
+
+.mood-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.mood-btn {
+    background: transparent;
+    border: 1px solid #e1e4e1;
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1.2rem;
+    font-family: inherit;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 85px;
+    transition: all 0.2s ease;
+}
+
+.mood-btn:hover {
+    border-color: var(--text-main);
+    color: var(--text-main);
+    background-color: #fbfcfb;
+}
+
+.mood-btn.active {
+    border: 2px solid var(--text-main);
+    background-color: var(--accent-dark);
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.mood-emoji {
+    font-size: 1.4rem;
+}
+
+.cta-banner {
+    background-color: var(--accent-dark);
+    color: #ffffff;
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-info h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.cta-info p {
+    color: #cbd5d6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.btn-talk {
+    background: #ffffff;
+    color: var(--accent-dark);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 24px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-talk:hover {
+    transform: translateY(-2px);
+}
+
+.luna-face {
+    width: 110px;
+    height: 110px;
+    background-color: var(--accent-light);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.eyes {
+    display: flex;
+    gap: 24px;
+}
+
+.eyes::before, .eyes::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-dark);
+    border-radius: 50%;
+}
+
+.mouth {
+    width: 18px;
+    height: 3px;
+    background-color: var(--accent-dark);
+    border-radius: 2px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.section-header h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.view-all {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    border: 1px solid #eef1ee;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    background: transparent;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-icon {
+    font-size: 1.3rem;
+}
+
+.tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+}
+
+.tag-blue {
+    background-color: #e3f2fd;
+    color: #1e88e5;
+}
+
+.tag-teal {
+    background-color: #e0f2f1;
+    color: #00897b;
+}
+
+.card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+@media (max-width: 650px) {
+    .cta-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+    .luna-face {
+        align-self: flex-end;
+    }
+}
+   p:hover {
+            color: #313030;
+            transform: scale(1.05);
+        }
+        .description{
+             color: #000000;
+    margin-bottom: 12px;
+    font-weight: 500
+        }

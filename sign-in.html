@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - MindWell</title>
+    <link rel="stylesheet" href="sign=in.css">
+</head>
+<body>
+
+    <div class="signin-container">
+        <form class="signin-form" id="signin-form">
+            <h2>Welcome to MindWell</h2>
+            <p>Please enter your credentials.</p>
+
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <div class="input-group">
+                <label for="gender">Gender Profile</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select your gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Non-Binary">Non-Binary</option>
+                    <option value="Prefer not to say">Prefer not to say</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-signin">Sign In</button>
+        </form>
+    </div>
+
+    <script src="sign-in.js"></script>
+</body>
+</html>

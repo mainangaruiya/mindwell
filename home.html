@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWell Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+    <script src="home.js" defer></script>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <header class="navbar">
+            <div class="nav-left">
+                <span class="logo">MindWell</span>
+                <nav class="nav-links">
+                    <a href="home.html" class="active">Home</a>
+                    <a href="Resource_hub.html">Resources</a>
+                    <a href="mood_progress.html">Progress</a>
+                </nav>
+            </div>
+            <div class="nav-right">
+                <a href="Resource_hub.html#crisis-support" class="btn-crisis">Crisis Support</a>
+                <div class="profile-avatar" id="profile-avatar"></div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="greeting-section">
+                <h1 id="user-greeting">Hi, Guest.</h1>
+                <p class="subtitle">You're doing great. Take a moment for yourself.</p>
+                
+                <div class="streak-badge" id="streak-badge">
+                    <span class="streak-icon">☀️</span>
+                    <div class="streak-text">
+                        <strong id="streak-text">1 Day of MindWell</strong>
+                        <p>A gentle rhythm of self-care.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mood-section">
+                <h2>How are you feeling today?</h2>
+                <div class="mood-options">
+                    <button class="mood-btn" data-mood="Radiant"><span class="mood-emoji">✨</span> Radiant</button>
+                    <button class="mood-btn" data-mood="Calm"><span class="mood-emoji">🌿</span> Calm</button>
+                    <button class="mood-btn" data-mood="Okay"><span class="mood-emoji">😐</span> Okay</button>
+                    <button class="mood-btn" data-mood="Tired"><span class="mood-emoji">☁️</span> Tired</button>
+                    <button class="mood-btn" data-mood="Low"><span class="mood-emoji">💧</span> Low</button>
+                </div>
+            </section>
+
+            <section class="cta-banner">
+                <div class="cta-info">
+                    <h2>Need someone to listen?</h2>
+                    <p>Luna is here for a gentle chat or just to sit with you.</p>
+                    <a href="Chat.html" class="btn-talk" id="start-talking-btn">Start Talking</a>
+                </div>
+                <div class="cta-graphic">
+                    <div class="luna-face">
+                        <div class="eyes"></div>
+                        <div class="mouth"></div>
+                    </div>
+                </div>
+            </section>
+             <section class="recommendations">
+                <div class="section-header">
+                    <h2>Recommended for you</h2>
+                    <a href="Resource_hub.html" class="view-all">View all tools</a>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-icon">🧘</span>
+                            <span class="tag tag-blue">3 MINS</span>
+                        </div>
+                        <h3>3-Minute Breathing</h3>
+                        <p class="description"><strong><bold>Find your center with a quick guided breathing exercise.</bold></strong></p>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-icon">📝</span>
+                            <span class="tag tag-teal">JOURNAL</span>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="pop">Journaling Prompt</h3>
+                            <p class="pop"><strong><bold>What is one small thing that went well for you today?</bold></strong></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    
+</body>
+</html>
+        </main>
+    </div>
+
+</body>
+</html>

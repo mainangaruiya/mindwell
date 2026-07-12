@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MindWell | Luna Voice Interface</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fbf9f4;
+            overflow: hidden;
+        }
+
+        .waveform-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 120px;
+        }
+
+        .bar {
+            width: 6px;
+            height: 20px;
+            background: #cee6f5;
+            border-radius: 99px;
+            animation: pulse 1.5s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(206, 230, 245, 0.4);
+        }
+
+        @keyframes pulse {
+            0%, 100% { height: 20px; opacity: 0.5; }
+            50% { height: 80px; opacity: 1; }
+        }
+
+        .bar:nth-child(1) { animation-delay: 0.1s; }
+        .bar:nth-child(2) { animation-delay: 0.3s; }
+        .bar:nth-child(3) { animation-delay: 0.2s; }
+        .bar:nth-child(4) { animation-delay: 0.4s; }
+        .bar:nth-child(5) { animation-delay: 0.1s; }
+        .bar:nth-child(6) { animation-delay: 0.3s; }
+        .bar:nth-child(7) { animation-delay: 0.5s; }
+
+        .mic-pulse {
+            animation: shadow-pulse 2s infinite;
+        }
+
+        @keyframes shadow-pulse {
+            0% { box-shadow: 0 0 0 0px rgba(64, 98, 98, 0.3); }
+            70% { box-shadow: 0 0 0 20px rgba(64, 98, 98, 0); }
+            100% { box-shadow: 0 0 0 0px rgba(64, 98, 98, 0); }
+        }
+
+        .crisis-pulse {
+            animation: crisis-shadow 3s infinite;
+        }
+
+        @keyframes crisis-shadow {
+            0% { box-shadow: 0 4px 12px rgba(138, 74, 60, 0.2); }
+            50% { box-shadow: 0 4px 24px rgba(138, 74, 60, 0.4); }
+            100% { box-shadow: 0 4px 12px rgba(138, 74, 60, 0.2); }
+        }
+
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background: rgba(27, 28, 25, 0.03);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "primary-fixed": "#c5eae9",
+                "on-secondary-container": "#516774",
+                "surface-container-highest": "#e4e2dd",
+                "on-error": "#ffffff",
+                "on-secondary-fixed": "#061e29",
+                "on-primary-fixed-variant": "#2a4c4d",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "primary-fixed-dim": "#a9cdcd",
+                "surface-dim": "#dbdad5",
+                "on-tertiary-fixed": "#390c04",
+                "on-primary-container": "#f3fffe",
+                "tertiary-container": "#a76253",
+                "on-surface-variant": "#414848",
+                "surface-bright": "#fbf9f4",
+                "secondary-fixed-dim": "#b3cad8",
+                "surface-container-low": "#f5f3ee",
+                "on-background": "#1b1c19",
+                "surface-container": "#f0eee9",
+                "inverse-on-surface": "#f2f1ec",
+                "secondary-container": "#cee6f5",
+                "surface-variant": "#e4e2dd",
+                "background": "#fbf9f4",
+                "on-tertiary-fixed-variant": "#703629",
+                "outline-variant": "#c1c8c7",
+                "on-error-container": "#93000a",
+                "on-tertiary-container": "#fffbff",
+                "tertiary-fixed": "#ffdad3",
+                "inverse-primary": "#a9cdcd",
+                "surface-container-high": "#eae8e3",
+                "tertiary": "#8a4a3c",
+                "on-surface": "#1b1c19",
+                "on-secondary": "#ffffff",
+                "surface": "#fbf9f4",
+                "on-primary-fixed": "#002020",
+                "primary": "#406262",
+                "tertiary-fixed-dim": "#ffb4a4",
+                "primary-container": "#587b7b",
+                "error": "#ba1a1a",
+                "secondary": "#4b616e",
+                "inverse-surface": "#30312e",
+                "surface-tint": "#426464",
+                "outline": "#717878",
+                "secondary-fixed": "#cee6f5",
+                "error-container": "#ffdad6",
+                "on-primary": "#ffffff",
+                "on-secondary-fixed-variant": "#344a56"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+              },
+              "spacing": {
+                "container-margin-mobile": "20px",
+                "stack-gap-lg": "48px",
+                "stack-gap-md": "24px",
+                "unit": "8px",
+                "gutter": "16px",
+                "container-margin-desktop": "40px",
+                "stack-gap-sm": "12px"
+              },
+              "fontFamily": {
+                "body-md": ["Quicksand"],
+                "crisis-action": ["Quicksand"],
+                "headline-md": ["Quicksand"],
+                "label-caps": ["Quicksand"],
+                "headline-lg": ["Quicksand"],
+                "body-lg": ["Quicksand"],
+                "headline-lg-mobile": ["Quicksand"]
+              },
+              "fontSize": {
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "crisis-action": ["16px", {"lineHeight": "20px", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+</head>
+<body class="bg-inverse-surface text-on-surface overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation (Reduced for Focus) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-margin-mobile md:px-container-margin-desktop h-16 bg-transparent">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed" style="font-size: 32px;">graphic_eq</span>
+<span class="font-headline-md text-headline-md font-bold text-primary-fixed">MindWell</span>
+</div>
+<button class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed/30">
+<img class="w-full h-full object-cover" data-alt="A close up, high-quality portrait of a calm adolescent student smiling gently, shot with soft natural lighting and a shallow depth of field. The aesthetic is clean, empathetic, and modern, using a soft palette of sage greens and warm creams to match the Safe Harbor design language." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwElnryXe6z1jdfHLfVNFggtjWPmwBPtyZNUXvDo-6981gTFAHEa-vLy75UI99fA6_AftJqy04n4LApsq_dLLNS2v-RQjUzW8N_WaB1e43JfSgZzU5NXSRVbf5kdgYVNXUurBziNYYM4Ne91mUD9opOejzLkZznnV-wl0tCgvVXlNqRfBKS4OlHqnU97dhtECz6DRtPXxN2VrvX6Ihix-Sf0uJq30Maw-ApA_-sxIADU0O39R0_y7OkD14YeuZ7KrCVWFNpljj9qY"/>
+</button>
+</header>
+<!-- Main Content: Voice Interface Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center relative px-container-margin-mobile">
+<!-- Background Atmosphere -->
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+
+</div>
+<div class="z-10 w-full max-w-[600px] text-center flex flex-col items-center">
+<!-- Luna Identity -->
+<div class="mb-stack-gap-lg">
+<div class="w-24 h-24 rounded-full bg-primary-container/20 flex items-center justify-center mb-stack-gap-sm mx-auto shadow-xl ring-2 ring-primary-fixed/20">
+<span class="material-symbols-outlined text-primary-fixed" style="font-size: 48px; font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary-fixed mb-2">Luna</h1>
+<p class="font-body-lg text-body-lg text-secondary-fixed-dim/80">Luna is listening...</p>
+</div>
+<!-- Waveform Visualizer -->
+<div class="waveform-container mb-stack-gap-lg">
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+</div>
+<!-- Interaction Options -->
+<div class="flex flex-col sm:flex-row gap-gutter w-full justify-center mt-stack-gap-md">
+<button class="flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-secondary-fixed-dim/30 text-secondary-fixed-dim font-body-md hover:bg-secondary-fixed-dim/10 transition-all">
+<span class="material-symbols-outlined">keyboard</span>
+                    Switch to Text
+                </button>
+<button class="flex items-center justify-center gap-2 px-8 py-4 rounded-full border-2 border-secondary-fixed-dim/30 text-secondary-fixed-dim font-body-md hover:bg-secondary-fixed-dim/10 transition-all">
+<span class="material-symbols-outlined">notes</span>
+                    View Transcript
+                </button>
+</div>
+</div>
+</main>
+<!-- Bottom Controls & Microphone -->
+<footer class="h-48 flex flex-col items-center justify-center relative z-20 pb-12">
+<!-- Main Mic Action -->
+<button class="mic-pulse w-24 h-24 rounded-full bg-primary flex items-center justify-center text-on-primary transition-transform active:scale-95 shadow-2xl" id="micToggle">
+<span class="material-symbols-outlined" style="font-size: 40px; font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+<p class="mt-4 font-label-caps text-label-caps text-secondary-fixed-dim/60 tracking-widest">TAP TO MUTE</p>
+</footer>
+<!-- Persistent Crisis Support -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="crisis-pulse bg-tertiary text-on-tertiary flex items-center gap-3 px-6 py-4 rounded-full font-crisis-action text-crisis-action shadow-lg hover:bg-tertiary-container transition-all active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency_home</span>
+            Crisis Support
+        </button>
+</div>
+<!-- Micro-interactions Script -->
+<script>
+        const micBtn = document.getElementById('micToggle');
+        const statusText = document.querySelector('.text-body-lg');
+        const bars = document.querySelectorAll('.bar');
+        let isListening = true;
+
+        micBtn.addEventListener('click', () => {
+            isListening = !isListening;
+            
+            if (isListening) {
+                micBtn.classList.add('bg-primary');
+                micBtn.classList.remove('bg-error/80');
+                micBtn.querySelector('span').innerText = 'mic';
+                statusText.innerText = 'Luna is listening...';
+                statusText.classList.remove('text-error-container');
+                bars.forEach(bar => bar.style.animationPlayState = 'running');
+            } else {
+                micBtn.classList.remove('bg-primary');
+                micBtn.classList.add('bg-error/80');
+                micBtn.querySelector('span').innerText = 'mic_off';
+                statusText.innerText = 'Luna is paused';
+                statusText.classList.add('text-error-container');
+                bars.forEach(bar => bar.style.animationPlayState = 'paused');
+            }
+        });
+
+        // Add small random variations to bars for organic feel
+        bars.forEach(bar => {
+            bar.style.animationDuration = (1 + Math.random() * 0.8) + 's';
+        });
+    </script>
+</body></html>
