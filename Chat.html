@@ -165,7 +165,7 @@
 </header>
 <!-- Chat Canvas -->
 <main class="flex-grow pt-20 pb-32 px-container-margin-mobile md:px-0">
-<div class="max-w-[800px] mx-auto flex flex-col gap-stack-gap-md chat-container">
+<div class="max-w-[800px] mx-auto flex flex-col gap-stack-gap-md chat-container" id="chat-container">
 <!-- Date Separator -->
 <div class="flex justify-center my-4">
 <span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">Today</span>
@@ -179,41 +179,14 @@
 <p class="font-body-md text-body-md">Hi there! I've been thinking about our last chat. How are you feeling today? Remember, this is a safe harbor for whatever is on your mind.</p>
 </div>
 </div>
-<!-- Student Message -->
-<div class="flex items-end justify-end gap-3 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-150">
-<div class="max-w-[75%] bg-secondary-container text-on-secondary-container p-4 rounded-2xl rounded-br-none soft-elevation">
-<p class="font-body-md text-body-md">I'm feeling a bit overwhelmed with exams coming up. It's hard to stay focused when everything feels so urgent.</p>
-</div>
-<img class="w-8 h-8 rounded-full flex-shrink-0 object-cover" data-alt="A portrait of a diverse teenage student looking thoughtful and calm, framed in a circular avatar. The background is a soft, out-of-focus school library with warm ambient lighting. The aesthetic is clean, empathetic, and relatable for a high school or college demographic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG6jm14_Nvro-4Uxiwxfmj56XUo47gMxBQY8GkmjF6zl9tzz9myXYy6zWvRWRSl3Im5V-tCREclFgx2AWt4wvQPpLgKSfpMRS9q6pZU_RnQwAs24bKjk4SL_QcQ4akFFrjinQR1HRUtzy6p789TTCl1OgXb8Zn0VFbyoo29612vTe5N0aTdCHPo9eId9NRL54RecWJqv5G7EWyCx-ktwGPl8orGxcOtRFceyyivX2So__MAIA-02VyuHT7q6-2gR1j36skoARUaDk"/>
-</div>
-<!-- Luna Message -->
-<div class="flex items-end gap-3 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
-<div class="w-8 h-8 rounded-full bg-primary-fixed flex-shrink-0 flex items-center justify-center">
-<span class="material-symbols-outlined text-primary text-[18px]">auto_awesome</span>
-</div>
-<div class="max-w-[75%] bg-primary-container text-on-primary-container p-4 rounded-2xl rounded-bl-none soft-elevation">
-<p class="font-body-md text-body-md">Exams can definitely feel like a heavy storm. Let's try to break that down into smaller waves. Would you like to try a 2-minute centering exercise, or just talk through what's worrying you most?</p>
-</div>
-</div>
-<!-- Typing Indicator -->
-<div class="flex items-end gap-3" id="typing-indicator">
-<div class="w-8 h-8 rounded-full bg-primary-fixed flex-shrink-0 flex items-center justify-center opacity-50">
-<span class="material-symbols-outlined text-primary text-[18px]">auto_awesome</span>
-</div>
-<div class="bg-surface-container p-4 rounded-2xl rounded-bl-none flex gap-1 items-center">
-<span class="w-2 h-2 bg-outline rounded-full typing-dot"></span>
-<span class="w-2 h-2 bg-outline rounded-full typing-dot"></span>
-<span class="w-2 h-2 bg-outline rounded-full typing-dot"></span>
-</div>
-</div>
 </div>
 </main>
 <!-- Bottom Input Bar -->
 <div class="fixed bottom-0 left-0 w-full bg-surface/80 backdrop-blur-xl p-4 md:p-6 z-40">
 <div class="max-w-[800px] mx-auto flex items-center gap-3">
 <div class="relative flex-grow">
-<input class="w-full bg-[#F0EDE8] border-none rounded-full py-4 px-6 pr-12 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all font-body-md text-body-md soft-elevation" placeholder="Share your thoughts..." type="text"/>
-<button class="absolute right-4 top-1/2 -translate-y-1/2 text-primary hover:scale-110 transition-transform">
+<input class="w-full bg-[#F0EDE8] border-none rounded-full py-4 px-6 pr-12 text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all font-body-md text-body-md soft-elevation" id="chat-input" placeholder="Share your thoughts..." type="text"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-primary hover:scale-110 transition-transform" id="send-btn">
 <span class="material-symbols-outlined">send</span>
 </button>
 </div>
@@ -223,16 +196,20 @@
 </div>
 <!-- Suggestions/Chips -->
 <div class="max-w-[800px] mx-auto flex gap-2 overflow-x-auto py-3 no-scrollbar">
-<button class="whitespace-nowrap px-4 py-1.5 rounded-full border-2 border-secondary-fixed-dim text-secondary font-label-caps text-label-caps hover:bg-secondary-container transition-colors">Center me</button>
-<button class="whitespace-nowrap px-4 py-1.5 rounded-full border-2 border-secondary-fixed-dim text-secondary font-label-caps text-label-caps hover:bg-secondary-container transition-colors">I'm anxious</button>
-<button class="whitespace-nowrap px-4 py-1.5 rounded-full border-2 border-secondary-fixed-dim text-secondary font-label-caps text-label-caps hover:bg-secondary-container transition-colors">Need a break</button>
+<button class="chip-btn whitespace-nowrap px-4 py-1.5 rounded-full border-2 border-secondary-fixed-dim text-secondary font-label-caps text-label-caps hover:bg-secondary-container transition-colors">Center me</button>
+<button class="chip-btn whitespace-nowrap px-4 py-1.5 rounded-full border-2 border-secondary-fixed-dim text-secondary font-label-caps text-label-caps hover:bg-secondary-container transition-colors">I'm anxious</button>
+<button class="chip-btn whitespace-nowrap px-4 py-1.5 rounded-full border-2 border-secondary-fixed-dim text-secondary font-label-caps text-label-caps hover:bg-secondary-container transition-colors">Need a break</button>
 </div>
 </div>
 <!-- Persistent Crisis FAB (Mobile only variant as specified) -->
 <a href="Resource_hub.html#crisis-support" class="md:hidden fixed bottom-32 right-6 w-14 h-14 bg-tertiary text-on-tertiary rounded-full flex items-center justify-center crisis-pulse z-50">
 <span class="material-symbols-outlined">emergency_home</span>
 </a>
+
 <script>
+        // ============================================
+        // 1) SETUP: mic button (unchanged from before)
+        // ============================================
         const micToggle = document.getElementById('mic-toggle');
         const micIcon = document.getElementById('mic-icon');
         let isRecording = false;
@@ -242,7 +219,6 @@
             if (isRecording) {
                 micToggle.classList.replace('bg-primary', 'bg-tertiary');
                 micIcon.textContent = 'graphic_eq';
-                // Add a simple pulse effect while "recording"
                 micToggle.classList.add('animate-pulse');
             } else {
                 micToggle.classList.replace('bg-tertiary', 'bg-primary');
@@ -251,17 +227,176 @@
             }
         });
 
-        // Simple scroll to bottom on load
-        window.scrollTo(0, document.body.scrollHeight);
+        // ============================================
+        // 2) TALK TO OUR OWN SERVER (not Gemini directly!)
+        // ============================================
+        // The Gemini API key and Luna's personality instructions now live
+        // on the server (see server.js), not here. This page just sends
+        // the conversation to our own "/api/luna" endpoint and gets back
+        // Luna's reply. That way the secret key is never visible to anyone
+        // viewing this page's source.
+        // If you're opening this page with the Live Server extension
+        // (usually http://127.0.0.1:5500), it can't run our API for us -
+        // it only serves static files. So we point straight at our
+        // Node server instead, which needs to be running separately
+        // (npm start, in its own terminal). If you're NOT using Live
+        // Server and instead just visiting http://localhost:3000/chat.html
+        // (i.e. the Node server is serving this page too), you can leave
+        // this as-is; it still works either way.
+        const LUNA_ENDPOINT = "http://localhost:3000/api/luna";
 
-        // Micro-interaction: Auto-hide typing indicator after 5 seconds to simulate message delivery
-        setTimeout(() => {
+        // Keep track of the conversation so Luna remembers earlier turns.
+        let conversationHistory = [];
+
+        // ============================================
+        // 3) SIMPLE CRISIS SAFETY NET
+        // ============================================
+        // If a message contains any of these words, we skip calling the AI
+        // completely and show the crisis resources right away instead.
+        // This way, the most serious messages always get the exact same
+        // safe, predictable response - not whatever the AI decides to say.
+        const CRISIS_KEYWORDS = [
+            "kill myself", "suicide", "end my life", "want to die",
+            "hurt myself", "self harm", "self-harm", "harming myself",
+            "being abused", "someone is hurting me"
+        ];
+
+        function containsCrisisLanguage(text) {
+            const lower = text.toLowerCase();
+            return CRISIS_KEYWORDS.some(word => lower.includes(word));
+        }
+
+        // ============================================
+        // 4) CHAT UI HELPERS
+        // ============================================
+        const chatContainer = document.getElementById('chat-container');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        function addMessage(text, sender) {
+            const wrapper = document.createElement('div');
+            const isLuna = sender === 'luna';
+
+            wrapper.className = isLuna
+                ? "flex items-end gap-3 animate-in fade-in slide-in-from-bottom-4 duration-500"
+                : "flex items-end justify-end gap-3 animate-in fade-in slide-in-from-bottom-4 duration-500";
+
+            wrapper.innerHTML = isLuna
+                ? `
+                    <div class="w-8 h-8 rounded-full bg-primary-fixed flex-shrink-0 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-[18px]">auto_awesome</span>
+                    </div>
+                    <div class="max-w-[75%] bg-primary-container text-on-primary-container p-4 rounded-2xl rounded-bl-none soft-elevation">
+                        <p class="font-body-md text-body-md"></p>
+                    </div>
+                `
+                : `
+                    <div class="max-w-[75%] bg-secondary-container text-on-secondary-container p-4 rounded-2xl rounded-br-none soft-elevation">
+                        <p class="font-body-md text-body-md"></p>
+                    </div>
+                `;
+
+            // Set text this way (not innerHTML) so a student's typed message
+            // can never accidentally be run as HTML/script.
+            wrapper.querySelector('p').textContent = text;
+
+            chatContainer.appendChild(wrapper);
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.className = "flex items-end gap-3";
+            typing.id = "typing-indicator";
+            typing.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-primary-fixed flex-shrink-0 flex items-center justify-center opacity-50">
+                    <span class="material-symbols-outlined text-primary text-[18px]">auto_awesome</span>
+                </div>
+                <div class="bg-surface-container p-4 rounded-2xl rounded-bl-none flex gap-1 items-center">
+                    <span class="w-2 h-2 bg-outline rounded-full typing-dot"></span>
+                    <span class="w-2 h-2 bg-outline rounded-full typing-dot"></span>
+                    <span class="w-2 h-2 bg-outline rounded-full typing-dot"></span>
+                </div>
+            `;
+            chatContainer.appendChild(typing);
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        function hideTyping() {
             const typing = document.getElementById('typing-indicator');
-            if(typing) {
-                typing.style.transition = 'opacity 0.5s ease';
-                typing.style.opacity = '0';
-                setTimeout(() => typing.remove(), 500);
+            if (typing) typing.remove();
+        }
+
+        // ============================================
+        // 5) ASK LUNA (via our own server, which talks to Gemini)
+        // ============================================
+        async function askLuna(userText) {
+            // Add the student's new message to the running history
+            conversationHistory.push({ role: "user", parts: [{ text: userText }] });
+
+            const response = await fetch(LUNA_ENDPOINT, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ contents: conversationHistory })
+            });
+
+            if (!response.ok) {
+                throw new Error("Luna server request failed: " + response.status);
             }
-        }, 5000);
+
+            const data = await response.json();
+            const lunaText = data.reply
+                || "Sorry, I had trouble finding the words just now. Could you say that again?";
+
+            // Save Luna's reply too, so she remembers it next turn
+            conversationHistory.push({ role: "model", parts: [{ text: lunaText }] });
+
+            return lunaText;
+        }
+
+        // ============================================
+        // 6) MAIN SEND FLOW
+        // ============================================
+        async function sendMessage(text) {
+            const trimmed = text.trim();
+            if (!trimmed) return;
+
+            addMessage(trimmed, 'student');
+            chatInput.value = '';
+
+            // Safety net: handle crisis language ourselves, don't ask the AI
+            if (containsCrisisLanguage(trimmed)) {
+                addMessage(
+                    "That sounds really serious, and I care about you. This isn't something to handle alone - please use the Crisis Support button above so you can reach someone who can help right now.",
+                    'luna'
+                );
+                return;
+            }
+
+            showTyping();
+            try {
+                const reply = await askLuna(trimmed);
+                hideTyping();
+                addMessage(reply, 'luna');
+            } catch (err) {
+                hideTyping();
+                console.error(err);
+                addMessage("Hmm, I'm having trouble connecting right now. Mind trying again in a moment?", 'luna');
+            }
+        }
+
+        sendBtn.addEventListener('click', () => sendMessage(chatInput.value));
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') sendMessage(chatInput.value);
+        });
+
+        // Suggestion chips send their own label as the message
+        document.querySelectorAll('.chip-btn').forEach(btn => {
+            btn.addEventListener('click', () => sendMessage(btn.textContent));
+        });
+
+        window.scrollTo(0, document.body.scrollHeight);
     </script>
+
+
 </body></html>
