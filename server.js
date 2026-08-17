@@ -23,10 +23,11 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite';
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
-// Optional Anthropic fallback (set ANTHROPIC_API_KEY in your .env)
+// Anthropic fallback. Either key on its own is enough to run the chat:
+// if Gemini's key is missing (or Gemini errors), we go straight to Anthropic.
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || 'claude-2.1';
-const ANTHROPIC_URL = `https://api.anthropic.com/v1/complete`;
+const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || 'claude-opus-5';
+const ANTHROPIC_URL = `https://api.anthropic.com/v1/messages`;
 
 // This is Luna's "personality instructions". The model reads this every
 // time, so it always answers in character and stays within safe boundaries.
@@ -58,37 +59,63 @@ app.use(express.static(__dirname));
 // Friendly redirects: many links expect lowercase `/chat.html` or `/`.
 app.get('/chat.html', (req, res) => res.sendFile(path.join(__dirname, 'Chat.html')));
 app.get('/', (req, res) => res.redirect('/Chat.html'));
+// The browser sends the conversation in Gemini's shape:
+//   [{ role: "user" | "model", parts: [{ text }] }, ...]
+// Anthropic wants [{ role: "user" | "assistant", content }] where the first
+// turn is from the user and the roles alternate, so translate and tidy up.
+function toAnthropicMessages(contents) {
+  const messages = [];
+  for (const turn of contents || []) {
+    const text = (turn.parts || []).map(p => p.text || '').join('\n').trim();
+    if (!text) continue;
+    const role = turn.role === 'model' ? 'assistant' : 'user';
+    // Skip an assistant greeting before the student has said anything.
+    if (messages.length === 0 && role === 'assistant') continue;
+    const last = messages[messages.length - 1];
+    if (last && last.role === role) {
+      last.content += `\n${text}`;
+    } else {
+      messages.push({ role, content: text });
+    }
+  }
+  return messages;
+}
+
 app.post("/api/luna", async (req, res) => {
   try {
-    if (!GEMINI_API_KEY) {
-      return res.status(500).json({ error: "Server is missing GEMINI_API_KEY. Check your .env file." });
+    if (!GEMINI_API_KEY && !ANTHROPIC_API_KEY) {
+      return res.status(500).json({ error: "Server has no AI key. Set GEMINI_API_KEY or ANTHROPIC_API_KEY in your .env file." });
     }
 
     const { contents } = req.body;
     console.log(`/api/luna request received; conversation length: ${ (contents || []).length }`);
-    // First: try Gemini
+    // First: try Gemini, but only if we actually have a key for it.
     let geminiReply = null;
-    try {
-      console.log(`Attempting Gemini model: ${GEMINI_MODEL}`);
-      const response = await fetch(GEMINI_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: SYSTEM_INSTRUCTIONS }] },
-          contents
-        })
-      });
+    if (!GEMINI_API_KEY) {
+      console.log('No GEMINI_API_KEY set - skipping Gemini and using Anthropic.');
+    } else {
+      try {
+        console.log(`Attempting Gemini model: ${GEMINI_MODEL}`);
+        const response = await fetch(GEMINI_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            system_instruction: { parts: [{ text: SYSTEM_INSTRUCTIONS }] },
+            contents
+          })
+        });
 
-      if (response.ok) {
-        const data = await response.json();
-        geminiReply = data.candidates?.[0]?.content?.parts?.[0]?.text || null;
-        if (geminiReply) console.log('Gemini reply received (truncated):', geminiReply.slice(0,120).replace(/\n/g,' '));
-      } else {
-        const errText = await response.text();
-        console.error("Gemini error:", errText);
+        if (response.ok) {
+          const data = await response.json();
+          geminiReply = data.candidates?.[0]?.content?.parts?.[0]?.text || null;
+          if (geminiReply) console.log('Gemini reply received (truncated):', geminiReply.slice(0,120).replace(/\n/g,' '));
+        } else {
+          const errText = await response.text();
+          console.error("Gemini error:", errText);
+        }
+      } catch (gErr) {
+        console.error('Gemini request failed:', gErr);
       }
-    } catch (gErr) {
-      console.error('Gemini request failed:', gErr);
     }
 
     // If Gemini produced a reply, use it
@@ -100,39 +127,48 @@ app.post("/api/luna", async (req, res) => {
     if (ANTHROPIC_API_KEY) {
       try {
         console.log(`Falling back to Anthropic model: ${ANTHROPIC_MODEL}`);
-        // Build a simple prompt from the conversation contents
-        const convoText = (contents || []).map(turn => {
-          const role = turn.role || 'user';
-          const text = (turn.parts || []).map(p => p.text).join('\n') || '';
-          return `${role.toUpperCase()}: ${text}`;
-        }).join('\n');
-
-        const prompt = `${SYSTEM_INSTRUCTIONS}\n\n${convoText}\nASSISTANT:`;
-
-        const aResp = await fetch(ANTHROPIC_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': ANTHROPIC_API_KEY
-          },
-          body: JSON.stringify({
-            model: ANTHROPIC_MODEL,
-            prompt,
-            max_tokens_to_sample: 300,
-            temperature: 0.7
-          })
-        });
-
-        if (aResp.ok) {
-          const aData = await aResp.json();
-          const anthropicReply = aData.completion || aData.result || null;
-          if (anthropicReply) {
-            console.log('Anthropic reply received (truncated):', anthropicReply.slice(0,120).replace(/\n/g,' '));
-            return res.json({ reply: anthropicReply.trim() });
-          }
+        const messages = toAnthropicMessages(contents);
+        if (messages.length === 0) {
+          console.error('Anthropic skipped: conversation had no usable messages.');
         } else {
-          const errText = await aResp.text();
-          console.error('Anthropic error:', errText);
+          const aResp = await fetch(ANTHROPIC_URL, {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+              'x-api-key': ANTHROPIC_API_KEY,
+              'anthropic-version': '2023-06-01'
+            },
+            body: JSON.stringify({
+              model: ANTHROPIC_MODEL,
+              // Luna's replies are short, but max_tokens covers thinking as well
+              // as the reply, so leave headroom or the answer gets cut off.
+              max_tokens: 2048,
+              system: SYSTEM_INSTRUCTIONS,
+              thinking: { type: 'adaptive' },
+              output_config: { effort: 'low' },
+              messages
+            })
+          });
+
+          if (aResp.ok) {
+            const aData = await aResp.json();
+            if (aData.stop_reason === 'refusal') {
+              console.error('Anthropic declined the request:', aData.stop_details?.category);
+            } else {
+              const anthropicReply = (aData.content || [])
+                .filter(block => block.type === 'text')
+                .map(block => block.text)
+                .join('')
+                .trim();
+              if (anthropicReply) {
+                console.log('Anthropic reply received (truncated):', anthropicReply.slice(0,120).replace(/\n/g,' '));
+                return res.json({ reply: anthropicReply });
+              }
+            }
+          } else {
+            const errText = await aResp.text();
+            console.error('Anthropic error:', errText);
+          }
         }
       } catch (aErr) {
         console.error('Anthropic request failed:', aErr);
