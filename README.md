@@ -41,6 +41,7 @@ page source. So the secret key lives in `server.js` (which only runs on
 your computer, never in the browser), and the browser just asks *our*
 server for Luna's replies instead of asking Gemini directly.
 
+
 ## Important note
 
 `.env` is listed in `.gitignore` on purpose — never commit your real API
